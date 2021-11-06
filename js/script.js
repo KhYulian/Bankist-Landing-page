@@ -10,6 +10,7 @@ const nav = document.querySelector('.nav');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const header = document.querySelector('.header');
 
 ///////////////////////////////////////
 // Modal window
@@ -35,6 +36,23 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+///////////////////////////////////////
+// Cookie message
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.textContent = 'We use cookies to improve functionality and analytics.';
+message.innerHTML =
+  'We use cookies to improve functionality and analytics. <button class="btn btn--close-cookie">Got it</button>';
+
+header.after(message);
+
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', function () {
+    // message.parentElement.removeChild(message);
+    message.remove();
+  });
 
 ///////////////////////////////////////
 // Button scrolling
@@ -124,7 +142,6 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 ///////////////////////////////////////
 // Sticky navigation: Intersection Observer API
 
-const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
 
 const stickyNav = function (entries) {
